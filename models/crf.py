@@ -78,6 +78,21 @@ class CRFModel:
                     "next_word": next_word,
                     "next_is_capitalized": next_first_char.isupper(),
                 })
+            if index > 1:
+                previous_word_2 = sentence[index - 2]
+                previous_first_char = previous_word_2[0] if previous_word_2 else ""
+                token_features.update({
+                    "prev_word_2": previous_word_2,
+                    "prev_is_capitalized_2": previous_first_char.isupper(),
+                })
+                
+            if index < len(sentence) - 2:
+                next_word_2 = sentence[index + 2]
+                next_first_char = next_word_2[0] if next_word_2 else ""
+                token_features.update({
+                    "next_word_2": next_word_2,
+                    "next_is_capitalized_2": next_first_char.isupper(),
+                })
             
             features.append(token_features)
         

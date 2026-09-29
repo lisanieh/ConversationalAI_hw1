@@ -1,0 +1,21 @@
+---------------------------------------
+Begin Slurm Prolog: Sep-27-2026 20:47:49
+Job ID:    5963750
+User ID:   ynieh3
+Account:   ece
+Job name:  a1a-bilstm
+Partition: coe-gpu
+QOS:       coe-ice
+---------------------------------------
+---------------------------------------
+Begin Slurm Epilog: Sep-27-2026 20:49:29
+Job ID:        5963750
+User ID:       ynieh3
+Account:       ece
+Job name:      a1a-bilstm
+Resources:     cpu=8,gres/gpu:h100=1,mem=32G,node=1
+Rsrc Used:     cput=00:13:04,vmem=0,walltime=00:01:38,mem=378964K,energy_used=0
+Partition:     coe-gpu
+QOS:           coe-ice
+Nodes:         atl1-1-03-010-20-0
+---------------------------------------

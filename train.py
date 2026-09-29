@@ -26,6 +26,7 @@ from evaluate import compute_metrics
 from torch.nn.utils.rnn import pad_sequence
 from types import SimpleNamespace
 from torch.utils.tensorboard import SummaryWriter
+import copy
 
 
 def parse_args() -> argparse.Namespace:
@@ -272,6 +273,9 @@ def train_loop(
         writer = SummaryWriter(log_dir=args.tensorboard_logdir)
         global_step = 0
         
+        best_dev_f1 = float("-inf")
+        best_state_dict = None
+        
         for epoch in range(args.epochs):
             model.train() #switch back to training mode for each epoch after validation\
                 
@@ -320,10 +324,18 @@ def train_loop(
             predictions = model.predict(dev_sentences, model_vocab)
             dev_f1 = compute_metrics(predictions, dev_labels)["span_f1"]
             writer.add_scalar("f1/dev_span", dev_f1, epoch+1)
-            print(f"Epoch {epoch+1}, Dev F1: {dev_f1:.4f}")
+            # print(f"Epoch {epoch+1}, Dev F1: {dev_f1:.4f}")
+            if dev_f1 > best_dev_f1:
+                best_dev_f1 = dev_f1
+                best_state_dict = copy.deepcopy(model.state_dict())
         
         writer.flush()
         writer.close()
+        
+        if best_state_dict is None:
+            raise RuntimeError("No best checkpoint was recorded.")
+
+        model.load_state_dict(best_state_dict)
         
         # 3. save the model to args.checkpoint_dir
         os.makedirs(args.checkpoint_dir, exist_ok=True)
@@ -339,7 +351,7 @@ def train_loop(
             },
             os.path.join(args.checkpoint_dir, "bilstm_model.pt"),
         )
-        return dev_f1
+        return best_dev_f1
     # ------------------------------------------------------------------
     raise NotImplementedError("train_loop() is left for you to implement.")
 

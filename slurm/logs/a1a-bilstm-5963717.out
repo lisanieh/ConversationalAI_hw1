@@ -1,0 +1,36 @@
+---------------------------------------
+Begin Slurm Prolog: Sep-27-2026 20:39:34
+Job ID:    5963717
+User ID:   ynieh3
+Account:   ece
+Job name:  a1a-bilstm
+Partition: coe-gpu
+QOS:       coe-ice
+---------------------------------------
+Epoch 1, Dev F1: 0.0000
+Epoch 2, Dev F1: 0.0080
+Epoch 3, Dev F1: 0.2851
+Epoch 4, Dev F1: 0.4065
+Epoch 5, Dev F1: 0.4814
+Epoch 6, Dev F1: 0.5546
+Epoch 7, Dev F1: 0.6069
+Epoch 8, Dev F1: 0.6680
+Epoch 9, Dev F1: 0.7004
+Epoch 10, Dev F1: 0.7323
+Training complete.
+  Model:          bilstm
+  Train fraction: 0.1
+  Checkpoint dir: checkpoints/bilstm_0.10
+  Final dev F1:   0.7323
+---------------------------------------
+Begin Slurm Epilog: Sep-27-2026 20:47:14
+Job ID:        5963717
+User ID:       ynieh3
+Account:       ece
+Job name:      a1a-bilstm
+Resources:     cpu=8,gres/gpu:h100=1,mem=32G,node=1
+Rsrc Used:     cput=01:01:20,vmem=0,walltime=00:07:40,mem=640320K,energy_used=0
+Partition:     coe-gpu
+QOS:           coe-ice
+Nodes:         atl1-1-03-010-30-0
+---------------------------------------

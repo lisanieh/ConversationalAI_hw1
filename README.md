@@ -156,8 +156,7 @@ How to package your submissions:
 
 ```bash
 cd your-project-directory/
-zip -r ../submission.zip models/ crf_predictions.jsonl bilstm_predictions.jsonl \
-    crf_model.pkl bilstm_model.pt
+zip -r ../submission.zip models/ crf_predictions.jsonl bilstm_predictions.jsonl crf_model.pkl bilstm_model.pt
 ```
 
 Beware of messing up with where......
